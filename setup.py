@@ -1,9 +1,7 @@
 import sqlite3 as sql;
 
 
-
-
-con = sql.connect("Trains.db")
+con = sql.connect("TrainsBrr.db")
 
 cur = con.cursor()
 cur.execute('INSERT INTO Banestrekning VALUES ("NordlandsBanen")')
@@ -18,9 +16,8 @@ cur.execute('INSERT INTO DelStrekning VALUES ("Fauske", "Mo i Rana", 170, false)
 cur.execute('INSERT INTO DelStrekning VALUES ("Mo i Rana", "Mosjøen", 90, false)')
 cur.execute('INSERT INTO DelStrekning VALUES ("Mosjøen", "Steinkjer", 280, false)')
 cur.execute('INSERT INTO DelStrekning VALUES ("Steinkjer", "Trondheim", 120, true)')
-cur.execute('INSERT INTO operatoer VALUeS ("SJ")')
-cur.execute('''INSERT INTO Vogn(OperatoerNavn, TogruteID, AntallRader, SeterPerRad, AntallKupeer, Rekkefoelgenr)
-            VALUES ("SJ", null, 3, 4, null, null)''')
-cur.execute('''INSERT INTO Togrute''')
+cur.execute('INSERT INTO Operatoer VALUES ("SJ")')
+cur.execute('INSERT INTO Vogn(OperatoerNavn, AntallRader)')
+
 
 con.commit()
