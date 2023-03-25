@@ -39,3 +39,7 @@ INSERT INTO TogruteBesoekerStasjon VALUES (52, "Mo i Rana", "08:08:00", "08:11:0
 INSERT INTO TogruteBesoekerStasjon VALUES (52, "Mosjøen", "09:11:00", "09:14:00");
 INSERT INTO TogruteBesoekerStasjon VALUES (52, "Steinkjer", "12:28:00", "12:31:00");
 INSERT INTO TogruteBesoekerStasjon VALUES (52, "Trondheim", "14:10:00", "14:13:00");
+
+INSERT INTO Vogn (VognID, Vogntype, OperatoerNavn) VALUES (5, "Sittevogn-1", "SJ");
+
+INSERT INTO VognITogrute VALUES (52, 5, 1);
