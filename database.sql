@@ -2,8 +2,8 @@ CREATE TABLE Togrute (
     TogruteID INTEGER PRIMARY KEY,
     Dager TEXT NOT NULL,
     Hovedretning BOOLEAN NOT NULL,
-    OperatoerID INTEGER NOT NULL,
-    FOREIGN KEY (OperatoerID) REFERENCES Operatoer (OperatoerID)
+    OperatoerNavn TEXT NOT NULL,
+    FOREIGN KEY (OperatoerNavn) REFERENCES Operatoer (Navn)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -20,6 +20,7 @@ CREATE TABLE TogruteForekomst (
         ON DELETE CASCADE
         ON DELETE CASCADE
 );
+
 
 CREATE TABLE BesoekerStasjon (
     TogruteID INTEGER NOT NULL,
@@ -63,35 +64,38 @@ CREATE TABLE Operatoer (
  	Navn TEXT PRIMARY KEY
 );
 
-CREATE TABLE Vogn (
-    VognID INTEGER,
-    OperatoerNavn TEXT NOT NULL,
+CREATE TABLE VognType(
+    Navn TEXT NOT NULL,
+    OperatoerNavn TEXT NOT NULL
     AntallRader INTEGER,
     SeterPerRad INTEGER,
     AntallKupeer INTEGER,
+    PRIMARY KEY (Navn, OperatoerNavn),
     FOREIGN KEY (OperatoerNavn) REFERENCES Operatoer (Navn)
-        ON UPDATE CASCADE
+)
+
+CREATE TABLE Vogn (
+    VognID INTEGER PRIMARY KEY,
+    Vogntype TEXT,
+    OperatoerNavn TEXT,
+    FOREIGN KEY (Vogntype, OperatoerNavn) REFERENCES VognType(Navn, OperatoerNavn)
 );
 
 CREATE TABLE VognITogrute(
+    TogruteID INTEGER,
 	VognID INTEGER,
-	TogruteID INTEGER,
 	RekkefoelgeNr INTEGER,
-	PRIMARY KEY(VognID, TogruteID),
+	PRIMARY KEY(TogruteID, VognID),
 	FOREIGN KEY (VognID) REFERENCES Vogn(VognID),
 	FOREIGN KEY(TogruteId) REFERENCES Togrute(TogruteID)
 );
 
 CREATE TABLE Kunde (
- 	KundeNr INTEGER PRIMARY KEY,
-    RegistretAv INTEGER NOT NULL,
+ 	KundeNr INTEGER PRIMARY KEY AUTO_INCREMENT,
     Fornavn TEXT NOT NULL,
     Etternavn TEXT NOT NULL,
     Email TEXT NOT NULL,
     TelefonNummer TEXT NOT NULL,
-    FOREIGN KEY (RegistretAv) REFERENCES Operatoer (OperatoerID)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
 );
 
 CREATE TABLE Kupe (

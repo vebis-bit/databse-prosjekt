@@ -1,7 +1,7 @@
 import sqlite3 as sql;
 
 
-con = sql.connect("TrainsBrr.db")
+con = sql.connect("Trains.db")
 
 cur = con.cursor()
 cur.execute('INSERT INTO Banestrekning VALUES ("NordlandsBanen")')
