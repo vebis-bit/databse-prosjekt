@@ -36,6 +36,5 @@ def finn_ruter_gjennom_stasjon():
     WHERE Togrute.dager LIKE "{dag}" AND TogruteBesoekerStasjon.StasjonNavn = {stasjon}'''
 
     res = cur.execute(query).fetchall()
-    print(res)
     for i in range(len(res)):
         print(f"Rute: {res[i][0]} \n \nOperatør: {res[i][3]}\nAnkomst: {res[i][6]} \nAvreise: {res[i][7]}")
