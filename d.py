@@ -84,5 +84,5 @@ def finnTogruter(startStasjon, endeStasjon, dato, klokkeslett):
 
 
 
-    print(liste)
+    return liste
 #finnTogruter(startStasjon, endeStasjon, dato, klokkeslett)

@@ -7,7 +7,7 @@ cur = con.cursor()
 
 
 cur.execute(f'''DELETE FROM Sete''')
-cur.execute(f'''DELETE FROM Kupe''')
+cur.execute(f'''DELETE FROM Seng''')
 
 # Joiner Vogner og vogntype for å få antallSeter per rad og antall rader
 vogner = cur.execute(f'''SELECT * FROM Vogn
@@ -20,7 +20,7 @@ for vogn in vogner:
         for i in range(vogn[5]*vogn[6]):
             cur.execute(f'''INSERT INTO Sete VALUES ({i+1}, {vognID})''')
     else:
-        for i in range(vogn[7]):
-            cur.execute(f'''INSERT INTO Kupe VALUES ({i+1}, {vognID})''')
+        for i in range(vogn[7]*2):
+            cur.execute(f'''INSERT INTO Seng VALUES ({i+1}, {vognID})''')
 
 con.commit()

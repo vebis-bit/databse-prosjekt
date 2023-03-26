@@ -125,13 +125,13 @@ CREATE TABLE BillettKjoep (
 CREATE TABLE SengeBillett (
     BillettID INTEGER PRIMARY KEY AUTOINCREMENT,
 	BestillingsID INTEGER NOT NULL,
-	KupeNr INTEGER NOT NULL,
+	SengNR INTEGER NOT NULL,
 	VognID INTEGER NOT NULL,
  	TogruteforekomstID INTEGER,
  	PaastigningsStasjon TEXT,
  	AvstigningsStasjon TEXT,
  	FOREIGN KEY (BestillingsID) REFERENCES BillettKjoep (BestillingsID),
- 	FOREIGN KEY (KupeNr, VognID) REFERENCES Kupe (KupeNr, VognID),
+ 	FOREIGN KEY (SengNR, VognID) REFERENCES Seng (SengNR, VognID),
     FOREIGN KEY (TogruteforekomstID) REFERENCES TogruteForekomst (TogruteforekomstID),
     FOREIGN KEY (PaastigningsStasjon) REFERENCES Stasjon(Navn),
     FOREIGN KEY (AvstigningsStasjon) REFERENCES Stasjon(Navn)
