@@ -25,6 +25,7 @@ con = tissefant.connect("Trainsss.db")
 
 cur = con.cursor()
 
+
 query = f'''SELECT * FROM Togrute 
 INNER JOIN TogruteBesoekerStasjon ON Togrute.TogruteID = TogruteBesoekerStasjon.TogruteID 
 WHERE Togrute.dager LIKE "{dag}" AND TogruteBesoekerStasjon.StasjonNavn = {stasjon}'''

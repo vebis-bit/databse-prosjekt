@@ -2,10 +2,10 @@ import sys
 import sqlite3 as sql
 import datetime as dt
 
-startStasjon = input("Hvor reiser du fra?")
+'''startStasjon = input("Hvor reiser du fra DA??")
 endeStasjon = input("Hvor skal du?")
 dato = input("Hvilken dato reiser du")
-klokkeslett = input("Når????????????")
+klokkeslett = input("Når????????????")'''
 
 def finnTogruter(startStasjon, endeStasjon, dato, klokkeslett):
     dtDato = dt.datetime.strptime(dato, "%d%m%Y").date()
@@ -85,4 +85,4 @@ def finnTogruter(startStasjon, endeStasjon, dato, klokkeslett):
 
 
     print(liste)
-finnTogruter(startStasjon, endeStasjon, dato, klokkeslett)
+#finnTogruter(startStasjon, endeStasjon, dato, klokkeslett)

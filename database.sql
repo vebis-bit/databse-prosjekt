@@ -91,10 +91,9 @@ CREATE TABLE VognITogrute(
 );
 
 CREATE TABLE Kunde (
- 	KundeNr INTEGER PRIMARY KEY AUTO_INCREMENT,
     Fornavn TEXT NOT NULL,
     Etternavn TEXT NOT NULL,
-    Email TEXT NOT NULL,
+    Email TEXT NOT NULL PRIMARY KEY,
     TelefonNummer TEXT NOT NULL,
 );
 
@@ -116,15 +115,15 @@ CREATE TABLE Sete (
         ON UPDATE CASCADE
 );
 CREATE TABLE BillettKjoep (
-    BestillingsID INTEGER PRIMARY KEY,
- 	KjoeptAv INTEGER NOT NULL,
- 	FOREIGN KEY (KjoeptAv) REFERENCES Kunde (KundeNr)
+    BestillingsID INTEGER PRIMARY KEY AUTOINCREMENT,
+ 	KjoeptAv TEXT NOT NULL,
+ 	FOREIGN KEY (KjoeptAv) REFERENCES Kunde (Email)
 	    ON DELETE CASCADE
 	    ON UPDATE CASCADE
 );
 
 CREATE TABLE SengeBillett (
-    BillettID INTEGER PRIMARY KEY,
+    BillettID INTEGER PRIMARY KEY AUTOINCREMENT,
 	BestillingsID INTEGER NOT NULL,
 	KupeNr INTEGER NOT NULL,
 	VognID INTEGER NOT NULL,
@@ -139,7 +138,7 @@ CREATE TABLE SengeBillett (
 );
 
 CREATE TABLE SeteBillett (
- 	BillettID INTEGER PRIMARY KEY,
+ 	BillettID INTEGER PRIMARY KEY AUTOINCREMENT,
     BestillingsID INTEGER NOT NULL,
  	SeteNr INTEGER NOT NULL,
 	VognID INTEGER NOT NULL,
@@ -160,11 +159,16 @@ CREATE TABLE SeteBillett (
 CREATE TABLE TogruteBesoekerStasjon(
 	TogruteID INTEGER NOT NULL,
 	StasjonNavn TEXT NOT NULL,
-	Avgang TIME,
-	Ankomst TIME,
+	Avgang TIME NOT NULL,
+	Ankomst TIME NOT NULL,
+    RekkefoelgeNr INT NOT NULL
 	PRIMARY KEY (TogruteID, StasjonNavn),
-	FOREIGN KEY (TogruteID) REFERENCES Togrute(TogruteID),
+	FOREIGN KEY (TogruteID) REFERENCES Togrute(TogruteID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
 	FOREIGN KEY (StasjonNavn) REFERENCES Stasjon(Navn)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE BanestrekningHarStasjon(
