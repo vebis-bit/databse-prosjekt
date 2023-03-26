@@ -1,16 +1,12 @@
-import sqlite3 as tissefant
+import sqlite3 as sql
 import sys
 
 def registrer(fornavn, etternavn, email, telefonnr):
-    con = tissefant.connect("Trainsss.db")
+    con = sql.connect("Trainsss.db")
     cur = con.cursor()
 
-    query = f'INSERT INTO Kunde(Fornavn, Etternavn, Email, TelefonNummer) VALUES("{fornavn}", "{etternavn}", "{email}", {telefonnr})'
-
-    print(query)
+    query = f'INSERT INTO Kunde(Fornavn, Etternavn, Email, TelefonNummer) VALUES("{fornavn}", "{etternavn}", "{email}", "{telefonnr}")'
 
     res = cur.execute(query)
-
-    print(res.fetchall())
 
     con.commit()

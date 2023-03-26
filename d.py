@@ -1,7 +1,10 @@
-import sys
+
 import sqlite3 as sql
 import datetime as dt
 
+con = sql.connect("Trainsss.db")
+cur = con.cursor()
+    
 '''startStasjon = input("Hvor reiser du fra DA??")
 endeStasjon = input("Hvor skal du?")
 dato = input("Hvilken dato reiser du")
@@ -15,8 +18,6 @@ def finnTogruter(startStasjon, endeStasjon, dato, klokkeslett):
     day = weekdayMap[weekday]
     nextDay = weekdayMap[(weekday+1)%7]
 
-    con = sql.connect("Trainsss.db")
-    cur = con.cursor()
 
     hovedretning = f'''SELECT StasjonNavn FROM BanestrekningHarStasjon 
     WHERE StasjonNavn = "{startStasjon}" OR StasjonNavn = "{endeStasjon}"

@@ -1,37 +1,41 @@
 import sqlite3 as tissefant
 import sys
 
-dag = sys.argv[2].lower()
+def finn_ruter_gjennom_stasjon():
 
-if(dag == "mandag"):
-    dag = "1______"
-elif(dag == "tirsdag"):
-    dag = "_1_____"
-elif(dag == "onsdag"):
-    dag = "__1____"
-elif(dag == "torsdag"):
-    dag = "___1___"
-elif(dag == "fredag"):
-    dag = "____1__"
-elif(dag == "lørdag"):
-    dag = "_____1_"
-elif(dag == "søndag"):
-    dag = "______1"
+    dag = input("Hvilken dag vil du se: ").lower()
 
-stasjon = sys.argv[1]
-stasjon = '"' + stasjon + '"'
+    if(dag == "mandag"):
+        dag = "1______"
+    elif(dag == "tirsdag"):
+        dag = "_1_____"
+    elif(dag == "onsdag"):
+        dag = "__1____"
+    elif(dag == "torsdag"):
+        dag = "___1___"
+    elif(dag == "fredag"):
+        dag = "____1__"
+    elif(dag == "lørdag"):
+        dag = "_____1_"
+    elif(dag == "søndag"):
+        dag = "______1"
+    else:
+        finn_ruter_gjennom_stasjon()
+        exit()
 
-con = tissefant.connect("Trainsss.db")
+    stasjon = input("Stasjon: (hust stor forbokstav)")
+    stasjon = '"' + stasjon + '"'
 
-cur = con.cursor()
+    con = tissefant.connect("Trainsss.db")
+
+    cur = con.cursor()
 
 
-query = f'''SELECT * FROM Togrute 
-INNER JOIN TogruteBesoekerStasjon ON Togrute.TogruteID = TogruteBesoekerStasjon.TogruteID 
-WHERE Togrute.dager LIKE "{dag}" AND TogruteBesoekerStasjon.StasjonNavn = {stasjon}'''
+    query = f'''SELECT * FROM Togrute 
+    INNER JOIN TogruteBesoekerStasjon ON Togrute.TogruteID = TogruteBesoekerStasjon.TogruteID 
+    WHERE Togrute.dager LIKE "{dag}" AND TogruteBesoekerStasjon.StasjonNavn = {stasjon}'''
 
-print(query)
-
-res = cur.execute(query)
-
-print(res.fetchall())
+    res = cur.execute(query).fetchall()
+    print(res)
+    for i in range(len(res)):
+        print(f"Rute: {res[i][0]} \n \nOperatør: {res[i][3]}\nAnkomst: {res[i][6]} \nAvreise: {res[i][7]}")
