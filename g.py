@@ -27,11 +27,8 @@ def kjop_billett(BrukerEmail):
     
     for rute in togruter:
         print(f"rute: {rute[0]} Avreisertidspunkt: {rute[1]} AnkomstTidspunkt: {rute[2]}")
-        
-    try: 
-        rute = int(input("Hvilken rute vil du ta?: "))
-    except:
-        print("Støtte for valgt dato eksisterer ikke")
+
+    rute = int(input("Hvilken rute vil du ta?: "))
 
     def stasjonNr(stasjon, r):
         return cur.execute(f'''SELECT TogruteBesoekerStasjon.RekkefoelgeNr FROM TogruteBesoekerStasjon
